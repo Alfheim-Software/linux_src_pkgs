@@ -11,4 +11,4 @@ mv ${pkgname}${pkgver} ${pkgname}
 
 makeself --bzip3 --notemp ./${pkgname} ./${pkgname}-${pkgver}.acf "${pkgname} v. ${pkgver} SFX" echo "Extraction of ${pkgname} is Complete"
 
-rm -rf ${pkgname} ${pkgname}${pkgver}-src.tar.gz
+rm -rf ${pkgname}${pkgver} ${pkgname}${pkgver}-src.tar.gz
