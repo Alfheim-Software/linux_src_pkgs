@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+pkgname="attr"
+pkgver="2.5.1"
+baseurl="https://download.savannah.gnu.org/releases/attr"
+
+wget ${baseurl}/${pkgname}-${pkgver}.tar.gz
+
+tar xvf ${pkgname}-${pkgver}.tar.gz
+mv ${pkgname}-${pkgver} ${pkgname}
+
+makeself --bzip3 --notemp ./${pkgname} ./${pkgname}-${pkgver}.acf "${pkgname} v. ${pkgver} SFX" echo "Extraction of ${pkgname} is Complete"
+
+rm -rf ${pkgname} ${pkgname}-${pkgver}.tar.gz

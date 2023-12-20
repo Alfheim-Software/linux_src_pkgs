@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+pkgname="e2fsprogs"
+pkgver="1.47.0"
+baseurl="https://downloads.sourceforge.net/project/e2fsprogs/e2fsprogs/v1.47.0"
+
+wget ${baseurl}/${pkgname}-${pkgver}.tar.gz
+
+tar xvf ${pkgname}-${pkgver}.tar.gz
+mv ${pkgname}-${pkgver} ${pkgname}
+
+makeself --bzip3 --notemp ./${pkgname} ./${pkgname}-${pkgver}.acf "${pkgname} v. ${pkgver} SFX" echo "Extraction of ${pkgname} is Complete"
+
+rm -rf ${pkgname} ${pkgname}-${pkgver}.tar.gz

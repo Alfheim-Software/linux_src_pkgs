@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+pkgname="linux"
+pkgver="torvalds-git"
+baseurl="git://git.kernel.org/pub/scm/linux/kernel/git/torvalds"
+
+git clone ${baseurl}/${pkgname}.git
+
+makeself --bzip3 --notemp ./${pkgname} ./${pkgname}-${pkgver}.acf "${pkgname} v. ${pkgver} SFX" echo "Extraction of ${pkgname} is Complete"
+
+rm -rf ${pkgname}

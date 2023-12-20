@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+pkgname="sed"
+pkgver="4.9"
+baseurl="https://ftp.gnu.org/gnu/${pkgname}"
+
+wget ${baseurl}/${pkgname}-${pkgver}.tar.xz
+
+tar xvf ${pkgname}-${pkgver}.tar.xz
+mv ${pkgname}-${pkgver} ${pkgname}
+
+makeself --bzip3 --notemp ./${pkgname} ./${pkgname}-${pkgver}.acf "${pkgname} v. ${pkgver} SFX" echo "Extraction of ${pkgname} is Complete"
+
+rm -rf ${pkgname} ${pkgname}-${pkgver}.tar.xz

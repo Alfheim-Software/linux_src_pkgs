@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+pkgname="MarkupSafe"
+pkgver="2.1.3"
+baseurl="https://pypi.org/packages/source/M/${pkgname}"
+
+wget ${baseurl}/${pkgname}-${pkgver}.tar.gz
+
+tar xvf ${pkgname}-${pkgver}.tar.gz
+mv ${pkgname}-${pkgver} ${pkgname}
+
+makeself --bzip3 --notemp ./${pkgname} ./${pkgname}-${pkgver}.acf "${pkgname} v. ${pkgver} SFX" echo "Extraction of ${pkgname} is Complete"
+
+rm -rf ${pkgname} ${pkgname}-${pkgver}.tar.gz

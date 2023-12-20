@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+pkgname="check"
+pkgver="0.15.2"
+baseurl="https://github.com/libcheck/check/releases/download/0.15.2"
+
+wget ${baseurl}/${pkgname}-${pkgver}.tar.gz
+
+tar xvf ${pkgname}-${pkgver}.tar.gz
+mv ${pkgname}-${pkgver} ${pkgname}
+
+makeself --bzip3 --notemp ./${pkgname} ./${pkgname}-${pkgver}.acf "${pkgname} v. ${pkgver} SFX" echo "Extraction of ${pkgname} is Complete"
+
+rm -rf ${pkgname} ${pkgname}-${pkgver}.tar.gz

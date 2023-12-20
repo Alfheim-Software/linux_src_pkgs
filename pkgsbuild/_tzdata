@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+pkgname="tzdata"
+pkgver="2023c"
+baseurl="https://www.iana.org/time-zones/repository/releases"
+
+mkdir tzdata
+pushd tzdata
+	wget ${baseurl}/${pkgname}${pkgver}.tar.gz
+	tar xvf ${pkgname}${pkgver}.tar.gz
+popd
+
+makeself --bzip3 --notemp ./${pkgname} ./${pkgname}-${pkgver}.acf "${pkgname} v. ${pkgver} SFX" echo "Extraction of ${pkgname} is Complete"
+
+rm -rf ${pkgname} ${pkgname}${pkgver}.tar.gz

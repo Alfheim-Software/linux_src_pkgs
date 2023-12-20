@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+pkgname="XML-Parser"
+pkgver="2.46"
+baseurl="https://cpan.metacpan.org/authors/id/T/TO/TODDR"
+
+wget ${baseurl}/${pkgname}-${pkgver}.tar.gz
+
+tar xvf ${pkgname}-${pkgver}.tar.gz
+mv ${pkgname}-${pkgver} ${pkgname}
+
+makeself --bzip3 --notemp ./${pkgname} ./${pkgname}-${pkgver}.acf "${pkgname} v. ${pkgver} SFX" echo "Extraction of ${pkgname} is Complete"
+
+rm -rf ${pkgname} ${pkgname}-${pkgver}.tar.gz

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+pkgname="python"
+pkgver="3.12.1"
+baseurl="https://www.python.org/ftp/python/${pkgver}"
+
+wget ${baseurl}/${pkgname}-${pkgver}-docs-html.tar.bz2
+
+tar xvf ${pkgname}-${pkgver}-docs-html.tar.bz2
+mv ${pkgname}-${pkgver}-docs-html ${pkgname}-docs-html
+
+makeself --bzip3 --notemp ./${pkgname}-docs-html ./${pkgname}-${pkgver}-docs-html.acf "${pkgname}-docs-html v. ${pkgver} SFX" echo "Extraction of ${pkgname}-docs-html is Complete"
+
+rm -rf ${pkgname} ${pkgname}-${pkgver}.tar.bz2

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+pkgname="zstd"
+pkgver="1.5.5"
+baseurl="https://github.com/facebook/${pkgname}/releases/download/v${pkgver}"
+
+wget ${baseurl}/${pkgname}-${pkgver}.tar.gz
+
+tar xvf ${pkgname}-${pkgver}.tar.gz
+mv ${pkgname}-${pkgver} ${pkgname}
+
+makeself --bzip3 --notemp ./${pkgname} ./${pkgname}-${pkgver}.acf "${pkgname} v. ${pkgver} SFX" echo "Extraction of ${pkgname} is Complete"
+
+rm -rf ${pkgname} ${pkgname}-${pkgver}.tar.gz

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+pkgname="acl"
+pkgver="2.3.1"
+baseurl="https://download.savannah.gnu.org/releases/acl"
+
+wget ${baseurl}/${pkgname}-${pkgver}.tar.xz
+
+tar xvf ${pkgname}-${pkgver}.tar.xz
+mv ${pkgname}-${pkgver} ${pkgname}
+
+makeself --bzip3 --notemp ./${pkgname} ./${pkgname}-${pkgver}.acf "${pkgname} v. ${pkgver} SFX" echo "Extraction of ${pkgname} is Complete"
+
+rm -rf ${pkgname} ${pkgname}-${pkgver}.tar.xz

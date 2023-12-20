@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+pkgname="kmod"
+pkgver="31"
+baseurl="https://www.kernel.org/pub/linux/utils/kernel/${pkgname}"
+
+wget ${baseurl}/${pkgname}-${pkgver}.tar.xz
+
+tar xvf ${pkgname}-${pkgver}.tar.xz
+mv ${pkgname}-${pkgver} ${pkgname}
+
+makeself --bzip3 --notemp ./${pkgname} ./${pkgname}-${pkgver}.acf "${pkgname} v. ${pkgver} SFX" echo "Extraction of ${pkgname} is Complete"
+
+rm -rf ${pkgname} ${pkgname}-${pkgver}.tar.xz

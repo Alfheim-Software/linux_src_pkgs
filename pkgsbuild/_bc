@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+pkgname="bc"
+pkgver="6.7.4"
+baseurl="https://github.com/gavinhoward/bc/releases/download/6.7.4"
+
+wget ${baseurl}/${pkgname}-${pkgver}.tar.xz
+
+tar xvf ${pkgname}-${pkgver}.tar.xz
+mv ${pkgname}-${pkgver} ${pkgname}
+
+makeself --bzip3 --notemp ./${pkgname} ./${pkgname}-${pkgver}.acf "${pkgname} v. ${pkgver} SFX" echo "Extraction of ${pkgname} is Complete"
+
+rm -rf ${pkgname} ${pkgname}-${pkgver}.tar.xz

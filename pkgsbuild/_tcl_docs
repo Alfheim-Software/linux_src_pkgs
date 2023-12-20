@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+pkgname="tcl"
+pkgver="8.6.13"
+baseurl="https://downloads.sourceforge.net/${pkgname}"
+
+wget ${baseurl}/${pkgname}${pkgver}-html.tar.gz
+
+tar xvf ${pkgname}${pkgver}-html.tar.gz
+mv ${pkgname}-${pkgver} ${pkgname}
+
+makeself --bzip3 --notemp ./${pkgname} ./${pkgname}-${pkgver}.acf "${pkgname} v. ${pkgver} SFX" echo "Extraction of ${pkgname} is Complete"
+
+rm -rf ${pkgname} ${pkgname}${pkgver}-html.tar.gz

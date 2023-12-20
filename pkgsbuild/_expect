@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+pkgname="expect"
+pkgver="5.45.4"
+baseurl="https://downloads.sourceforge.net/expect"
+
+wget ${baseurl}/${pkgname}${pkgver}.tar.gz
+
+tar xvf ${pkgname}${pkgver}.tar.gz
+mv ${pkgname}${pkgver} ${pkgname}
+
+makeself --bzip3 --notemp ./${pkgname} ./${pkgname}${pkgver}.acf "${pkgname} v. ${pkgver} SFX" echo "Extraction of ${pkgname} is Complete"
+
+rm -rf ${pkgname} ${pkgname}${pkgver}.tar.gz

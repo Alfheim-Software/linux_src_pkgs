@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+pkgname="glibc"
+pkgver="2.38"
+baseurl="https://ftp.gnu.org/gnu/glibc"
+
+wget ${baseurl}/${pkgname}-${pkgver}.tar.xz
+
+tar xvf ${pkgname}-${pkgver}.tar.xz
+mkdir tmp_${pkgname}
+mv ${pkgname}-${pkgver} tmp_${pkgname}/${pkgname}
+pushd tmp_${pkgname}
+	wget https://www.linuxfromscratch.org/patches/lfs/development/glibc-2.38-upstream_fixes-3.patch
+	wget https://www.linuxfromscratch.org/patches/lfs/development/glibc-2.38-fhs-1.patch
+popd
+mv tmp_${pkgname} ${pkgname}
+
+makeself --bzip3 --notemp ./${pkgname} ./${pkgname}-${pkgver}.acf "${pkgname} v. ${pkgver} SFX" echo "Extraction of ${pkgname} is Complete"
+
+rm -rf ${pkgname} ${pkgname}-${pkgver}.tar.xz

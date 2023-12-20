@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+pkgname="elfutils"
+pkgver="0.190"
+baseurl="https://sourceware.org/ftp/elfutils/0.190"
+
+wget ${baseurl}/${pkgname}-${pkgver}.tar.bz2
+
+tar xvf ${pkgname}-${pkgver}.tar.bz2
+mv ${pkgname}-${pkgver} ${pkgname}
+
+makeself --bzip3 --notemp ./${pkgname} ./${pkgname}-${pkgver}.acf "${pkgname} v. ${pkgver} SFX" echo "Extraction of ${pkgname} is Complete"
+
+rm -rf ${pkgname} ${pkgname}-${pkgver}.tar.bz2

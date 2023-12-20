@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+pkgname="lfs-bootscripts"
+pkgver="20230728"
+baseurl="https://www.linuxfromscratch.org/lfs/downloads/development"
+
+wget ${baseurl}/${pkgname}-${pkgver}.tar.xz
+
+tar xvf ${pkgname}-${pkgver}.tar.xz
+mv ${pkgname}-${pkgver} ${pkgname}
+
+makeself --bzip3 --notemp ./${pkgname} ./${pkgname}-${pkgver}.acf "${pkgname} v. ${pkgver} SFX" echo "Extraction of ${pkgname} is Complete"
+
+rm -rf ${pkgname} ${pkgname}-${pkgver}.tar.xz
