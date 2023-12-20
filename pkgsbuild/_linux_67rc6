@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+pkgname="linux"
+pkgver="6.7"
+baseurl="https://git.kernel.org/torvalds/t"
+
+wget ${baseurl}/${pkgname}-${pkgver}-rc6.tar.gz
+
+tar xvf ${pkgname}-${pkgver}-rc6.tar.gz
+mv ${pkgname}-${pkgver}-rc6 ${pkgname}
+
+makeself --bzip3 --notemp ./${pkgname} ./${pkgname}-${pkgver}-rc6.acf "${pkgname} v. ${pkgver}-rc6 SFX" echo "Extraction of ${pkgname} is Complete"
+
+rm -rf ${pkgname} ${pkgname}-${pkgver}-rc6.tar.gz
