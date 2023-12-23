@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+pkgname="unifont"
+pkgver="15.1.04"
+baseurl="https://unifoundry.com/pub/unifont/unifont-15.1.04/font-builds"
+
+wget ${baseurl}/${pkgname}-${pkgver}.pcf.gz
+
+gunzip ${pkgname}-${pkgver}.pcf.gz
+mkdir ${pkgname}
+mv ${pkgname}-${pkgver}.pcf ${pkgname}/${pkgname}.pcf
+
+makeself --bzip3 --notemp ./${pkgname} ./${pkgname}-${pkgver}.acf "${pkgname} v. ${pkgver} SFX" echo "Extraction of ${pkgname} is Complete"
+
+rm -rf ${pkgname}.pcf ${pkgname}

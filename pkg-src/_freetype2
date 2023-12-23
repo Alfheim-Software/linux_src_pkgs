@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-pkgname="xz"
-pkgver="5.4.5"
-baseurl="https://tukssni.org/${pkgname}"
+pkgname="freetype"
+pkgver="2.13.2"
+baseurl="https://downloads.sourceforge.net/freetype"
 
 wget ${baseurl}/${pkgname}-${pkgver}.tar.xz
 

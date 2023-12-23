@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-pkgname="udev-lfs"
-pkgver="2020818"
-baseurl="https://anduin.linuxfromscratch.org/LFS"
+pkgname="curl"
+pkgver="8.5.0"
+baseurl="https://curl.se/download"
 
 wget ${baseurl}/${pkgname}-${pkgver}.tar.xz
 

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+pkgname="freetype"
+pkgver="2.13.2"
+baseurl="https://downloads.sourceforge.net/freetype"
+
+wget ${baseurl}/${pkgname}-doc-${pkgver}.tar.xz
+
+tar xvf ${pkgname}-doc-${pkgver}.tar.xz
+mv ${pkgname}-${pkgver} ${pkgname}-doc
+
+makeself --bzip3 --notemp ./${pkgname}-doc ./${pkgname}-doc-${pkgver}.acf "${pkgname}-docs v. ${pkgver} SFX" echo "Extraction of ${pkgname} is Complete"
+
+rm -rf ${pkgname}-doc ${pkgname}-doc-${pkgver}.tar.xz

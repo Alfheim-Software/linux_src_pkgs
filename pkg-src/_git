@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+pkgname="git"
+pkgver="2.43.0"
+baseurl="https://mirrors.edge.kernel.org/pub/software/scm/git"
+
+mkdir git
+pushd git
+	wget ${baseurl}/${pkgname}-${pkgver}.tar.gz
+	tar xvf ${pkgname}-${pkgver}.tar.gz
+	mv ${pkgname}=${pkgver} ${pkgname}
+	rm -rv ${pkgname}-${pkgver}.tar.gz
+	wget ${baseurl}/${pkgname}-manpages-${pkgver}.tar.gz
+	wget ${baseurl}/${pkgname}-htmldocs-${pkgver}.tar.gz
+popd
+
+makeself --bzip3 --notemp ./git-pkg ./${pkgname}-${pkgver}.acf "${pkgname} v. ${pkgver} SFX" echo "Extraction of ${pkgname} is Complete"
+
+rm -rf git 

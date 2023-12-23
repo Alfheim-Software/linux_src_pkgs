@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+
+printf "
+#################################################
+#                                               #
+#          ALFHEIM SOFTWARE'S LFS SETUP         #
+#                                               #
+#################################################
+#  LICENSE :: Alfheim Software Public License   #
+#  (c) 2023 Alfheim Software and Contributors   #
+#                                               #
+#           See LICENSE for details             #
+#################################################
+#                                               #
+# This software is designed to build a complete #
+#   Linux From Scratch source tree.  It makes   #
+#   certain assumptions, including the use of   #
+# bcachefs as the filesystem, and certain other #
+# design choices, such as systemd, git and efi. #
+#                                               #
+#################################################
+# Please read this script before executing it.  #
+# Certain parts require sudo. Please do not run #
+#   this script before understanding what it is #
+#   doing so as to make sure you understand the #
+#   inherent risk in running this script.       #
+#################################################
+"
+
+## Set the working directory
+ASLSF="${HOME}/.aslsf"
+mkdir -pv ${ASLSF}
+
+## Set the mount point for our distribution build
+LFS=/mnt/lfs
+sudo mkdir -pv ${LFS}
+
+## Choose the filesystem
+PS3='Choose your filesystem :: '
+filesystems=("bcachefs" "btrfs" "ext4")
+select fs in "${filesystems[@]}"; do
+	case ${fs} in
+		"bcachefs")
+			filesystem="bcachefs"
+			break
+			;;
+		"btrfs")
+			filesystem="btrfs"
+			break
+			;;
+		"ext4")
+			filesystem="ext4"
+			break
+			;;
+		*) echo "Unsupported filesystem"
+	esac
+done
+
+if [[ ${filesystem} -eq "bcachefs" ]]
+then
+	echo "bcachefs requires linux kernel >= 6.7 be installed"
+	echo "bcachefs requires bcachefs-tools be installed"
+	echo "If you wish to cancel and choose a different filesystem"
+	echo "   then press Ctrl-C.  Else it will continue to run."
+	sleep 5
+fi
+## Enter the working directory
+pushd ${ASLSF}
+	## This creates a 50GB img file for use as the build directory
+	sudo dd if=/dev/zero of=lfs-${filesystem}.img bs=1 count=0 seek=50G
+
+	## Format the img to desired filesystems
+	sudo mkfs.${filesystem} lfs-${filesystem}.img
+
+	## Next we mount the img file to our mount point
+	sudo mount lfs-${filesystem}.img ${LFS}
+	sudo chown -R ${USER}:${USER} ${LFS}
+popd
+
+## Create sources directory and populate
+pkgs="${HOME}/repo/build/pkg-src"
+ls ${pkgs} > pkgsrc.list
+pkgsrc=$(cat pkgsrc.list)
+
+mkdir -pv ${LFS}/sources
+pushd ${LFS}/sources
+	for pkg in ${pkgsrc}; do
+		source ${pkgs}/${pkg}
+	done
+popd

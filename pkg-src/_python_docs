@@ -2,7 +2,7 @@
 
 pkgname="python"
 pkgver="3.12.1"
-baseurl="https://www.python.org/ftp/python/${pkgver}"
+baseurl="https://www.python.org/ftp/python/doc/3.12.1"
 
 wget ${baseurl}/${pkgname}-${pkgver}-docs-html.tar.bz2
 
