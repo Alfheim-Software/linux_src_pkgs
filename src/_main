@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+source ./setup_pre/_createfs
+source ./setup_pre/_createusr
+source ./setup_pre/_envsetup
+
+source ./stage0/_binutils_01

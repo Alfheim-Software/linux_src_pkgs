@@ -61,7 +61,7 @@ then
 	echo "bcachefs requires linux kernel >= 6.7 be installed"
 	echo "bcachefs requires bcachefs-tools be installed"
 	echo "If you wish to cancel and choose a different filesystem"
-	echo "   then press Ctrl-C.  Else it will continue to run."
+	echo "   then press Ctrl-C.  Otherwise it will continue to run."
 	sleep 5
 fi
 ## Enter the working directory
@@ -87,4 +87,18 @@ pushd ${LFS}/sources
 	for pkg in ${pkgsrc}; do
 		source ${pkgs}/${pkg}
 	done
+popd
+
+pushd ${LFS}
+	mkdir -pv ${LFS}/{etc,var} ${LFS}/usr/{bin,lib,sbin}
+
+	for i in bin lib sbin; do
+		ln -sv usr/$i ${LFS}/$i
+	done
+
+	case $(uname -m) in
+		x86_64) mkdir -pv ${LFS}/lib64 ;;
+	esac
+
+	mkdir -pv ${LFS}/tools
 popd
